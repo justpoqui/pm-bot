@@ -2,6 +2,8 @@
 
 You have a personal management team sitting in this repo and no numbers in it yet. This is the short version of what to do about that — everything else in the README is reference material for later.
 
+**Never used any of this before — Claude Code, Node.js, a terminal, git?** Read **[BEGINNER-GUIDE.md](./BEGINNER-GUIDE.md)** first — it explains every piece of software in this repo in plain language before you're expected to use any of it.
+
 ## The 30-second version
 
 Six Claude Code agents (`chief-of-staff` + five specialists) read and write plain Markdown files under `data/` to track your business. Talk to them like coworkers. Nothing here requires you to know git, Markdown, or a terminal — pick whichever of the three paths below matches how you'd rather work.
