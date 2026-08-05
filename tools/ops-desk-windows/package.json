@@ -1,0 +1,15 @@
+{
+  "name": "ops-desk-windows",
+  "version": "1.0.0",
+  "description": "Windows launcher for Ops Desk - serves ops-desk.html locally and opens it in the default browser.",
+  "private": true,
+  "bin": "server.js",
+  "scripts": {
+    "build": "bash build.sh"
+  },
+  "pkg": {
+    "assets": ["ops-desk.html"],
+    "targets": ["node18-win-x64"],
+    "outputPath": "dist"
+  }
+}

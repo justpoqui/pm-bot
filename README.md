@@ -72,6 +72,8 @@ Then open http://localhost:3000. No dependencies to install (Node's built-in `ht
 
 The tradeoff: it doesn't touch `data/*.md` at all — it keeps its own copy in that browser's local storage (so it won't see what an agent just wrote, and vice versa). Use its **Export** button to get a Markdown file formatted to paste into `data/<dept>/*.md`, or a JSON backup to move data between devices.
 
+**Windows `.exe`** — a standalone version of Ops Desk for double-clicking, no browser tab management or hosted link needed. See [`tools/ops-desk-windows/`](./tools/ops-desk-windows/) — same code, same data model, just launched as a desktop app.
+
 ## Getting started
 
 The `data/` files start empty (all placeholder rows). To get real value fast:
