@@ -56,13 +56,19 @@ node scripts/snapshot.js restore <id>          # restore a specific one
 
 ## Dashboard GUI
 
-A web dashboard lives in `gui/` — it reads the `data/` markdown files directly and renders them as stat tiles and tables (plus the snapshot panel above), so you can see the business state at a glance without opening each file.
+There are two GUI options — pick whichever fits how you work.
+
+**`gui/` — local dashboard, reads your real data directly.** Runs on your machine and reads/writes the actual `data/<dept>/*.md` files agents use, live.
 
 ```
 node gui/server.js
 ```
 
 Then open http://localhost:3000. No dependencies to install (Node's built-in `http` module only). Refresh the page (or click "Refresh") to pick up changes an agent just made to `data/`.
+
+**`tools/ops-desk.html` — no-shell dashboard, browser-only.** A single self-contained HTML file with the same dashboard/edit experience (per-department tables, a "needs attention" view, DCB + this business switchable in one place), for whenever you'd rather not open a terminal. Open the file directly in a browser, or use the hosted copy: **[Ops Desk](https://claude.ai/code/artifact/11da6753-1bc3-40f1-9cd3-35500bad718a)**.
+
+The tradeoff: it doesn't touch `data/*.md` at all — it keeps its own copy in that browser's local storage (so it won't see what an agent just wrote, and vice versa). Use its **Export** button to get a Markdown file formatted to paste into `data/<dept>/*.md`, or a JSON backup to move data between devices.
 
 ## Getting started
 
