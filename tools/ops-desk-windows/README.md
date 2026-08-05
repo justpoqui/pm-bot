@@ -2,6 +2,8 @@
 
 A standalone `.exe` version of [Ops Desk](../ops-desk.html) — same dashboard, same tables, same everything. Double-click it, it opens in your default browser, and it works fully offline (no claude.ai link needed).
 
+The built binary is checked in at [`dist/OpsDesk.exe`](./dist/OpsDesk.exe) — no build step needed, just download that file and run it.
+
 ## What it actually is
 
 A tiny local web server bundled into a single executable (via [`pkg`](https://github.com/vercel/pkg)). Double-clicking `OpsDesk.exe`:
