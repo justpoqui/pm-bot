@@ -20,7 +20,7 @@ Say what's true and let the right agent log it:
 Use the Excel template you already have. Fill in whatever you know — leave the rest blank. When ready, tell `finance-manager`/`sales-manager`/etc. what you entered, or paste rows straight into the matching `data/<dept>/*.md` file.
 
 **C — Use Ops Desk (no terminal at all)**
-Open **[Ops Desk](https://claude.ai/code/artifact/11da6753-1bc3-40f1-9cd3-35500bad718a)** in a browser and fill in tables directly — it's built for exactly this. It keeps its own copy (not synced to `data/`), so when you want the agents to see what you entered, use its **Export** button and hand the Markdown output to the matching agent. *(A copy also lives at `tools/ops-desk.html` in this repo once [PR #3](../../pull/3) merges — same tool, no hosting required.)*
+Open **[Ops Desk](https://claude.ai/code/artifact/11da6753-1bc3-40f1-9cd3-35500bad718a)** in a browser and fill in tables directly — it's built for exactly this. It keeps its own copy (not synced to `data/`), so when you want the agents to see what you entered, use its **Export** button and hand the Markdown output to the matching agent. *(A copy also lives at `tools/ops-desk.html` in this repo — same tool, no hosting required.)*
 
 ## Then what
 
@@ -39,7 +39,7 @@ It reads across every department and gives you a short, ranked list instead of a
 | `data/<dept>/*.md` | Your real numbers — gitignored, local to whichever machine/session wrote them |
 | `data/snapshots/` | Save points for your real data (`node scripts/snapshot.js save/list/restore`) |
 | `gui/` | Local dashboard reading `data/` live — run with `node gui/server.js` |
-| `tools/ops-desk.html` *(pending PR #3)* | No-shell browser dashboard, own local storage, Export to hand data to the agents |
+| `tools/ops-desk.html` | No-shell browser dashboard, own local storage, Export to hand data to the agents |
 
 ## If something feels off
 
