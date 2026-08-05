@@ -1,4 +1,4 @@
-# Where to start
+# 👉 Start here
 
 You have a personal management team sitting in this repo and no numbers in it yet. This is the short version of what to do about that — everything else in the README is reference material for later.
 

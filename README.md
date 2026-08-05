@@ -1,5 +1,7 @@
 # pm-bot — Personal Management Team
 
+> **New here?** 👉 **[START-HERE.md](./START-HERE.md)** — the short version. Everything below is reference material for once you're up and running.
+
 A small team of Claude Code subagents that act as the management team for a solo/small business owner. Each agent is a specialist role; a chief of staff coordinates them and keeps you focused on what matters this week.
 
 Marketing and sales are the priority focus for this business — those two roles are tuned to push for action, not just advice.
