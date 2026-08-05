@@ -1,5 +1,8 @@
 # Sales Pipeline
 
+_Local-only file — this data never leaves your machine and is never committed to git. See README → "Local-only data & snapshots."_
+
+
 Owned by: `sales-manager` agent. Stages: new → contacted → quoted → won / lost
 
 ## Open leads / deals

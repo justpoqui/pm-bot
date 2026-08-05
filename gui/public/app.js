@@ -135,6 +135,57 @@ function renderStatTiles(departments) {
   });
 }
 
+function formatSnapTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+async function loadSnapshots() {
+  const res = await fetch('/api/snapshots');
+  const { snapshots } = await res.json();
+
+  const summary = document.getElementById('snapshot-summary');
+  summary.textContent = snapshots.length
+    ? `— last saved ${formatSnapTime(snapshots[0].savedAt)}`
+    : '— none saved yet';
+
+  const list = document.getElementById('snapshot-list');
+  list.innerHTML = '';
+  if (!snapshots.length) {
+    list.appendChild(el('li', { class: 'snapshot-empty', text: 'No snapshots yet — save one below.' }));
+    return;
+  }
+  snapshots.forEach((s) => {
+    const info = el('span', { class: 'snap-info' }, [
+      s.label ? el('span', { class: 'snap-label', text: `${s.label} ` }) : null,
+      document.createTextNode(formatSnapTime(s.savedAt)),
+    ]);
+    const btn = el('button', { class: 'restore-btn', type: 'button', text: 'Restore' });
+    btn.addEventListener('click', async () => {
+      if (!confirm(`Restore data to the snapshot from ${formatSnapTime(s.savedAt)}? Current data is auto-saved first.`)) return;
+      await fetch('/api/snapshots/restore', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: s.id }),
+      });
+      await load();
+    });
+    list.appendChild(el('li', {}, [info, btn]));
+  });
+}
+
+document.getElementById('snapshot-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const input = document.getElementById('snapshot-label');
+  await fetch('/api/snapshots', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ label: input.value }),
+  });
+  input.value = '';
+  await loadSnapshots();
+});
+
 async function load() {
   const res = await fetch('/api/data');
   const data = await res.json();
@@ -147,6 +198,8 @@ async function load() {
   const container = document.getElementById('departments');
   container.innerHTML = '';
   data.departments.forEach((dept) => container.appendChild(renderDept(dept)));
+
+  await loadSnapshots();
 }
 
 document.getElementById('refresh').addEventListener('click', load);

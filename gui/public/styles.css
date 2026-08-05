@@ -105,6 +105,113 @@ html, body {
 }
 .refresh-btn:hover { background: var(--gridline); }
 
+.snapshot-panel {
+  max-width: 1100px;
+  margin: 4px auto 0;
+  padding: 0 32px;
+}
+.snapshot-panel summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  list-style: none;
+}
+.snapshot-panel summary::-webkit-details-marker { display: none; }
+.snapshot-panel summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 6px;
+  transition: transform 0.15s ease;
+}
+.snapshot-panel[open] summary::before { transform: rotate(90deg); }
+.snapshot-summary-text {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.snapshot-body {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 6px;
+}
+.snapshot-note {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.snapshot-note code {
+  background: var(--gridline);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 11px;
+}
+.snapshot-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.snapshot-form input {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: var(--page-plane);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+.snapshot-form button {
+  border: 1px solid var(--border);
+  background: var(--gridline);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.snapshot-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.snapshot-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--gridline);
+}
+.snapshot-list li:last-child { border-bottom: none; }
+.snapshot-list .snap-info { color: var(--text-secondary); }
+.snapshot-list .snap-info .snap-label { color: var(--text-primary); font-weight: 600; }
+.snapshot-list button.restore-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: none;
+}
+.snapshot-list button.restore-btn:hover { background: var(--gridline); }
+.snapshot-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
 .stat-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

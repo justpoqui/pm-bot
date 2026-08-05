@@ -5,18 +5,11 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { ROOT, DEPARTMENTS, ensureLocalData } = require('../scripts/data-store');
+const snapshots = require('../scripts/snapshot');
 
-const ROOT = path.join(__dirname, '..');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const PORT = process.env.PORT || 3000;
-
-const DEPARTMENTS = [
-  { key: 'finance', label: 'Finance', file: 'data/finance/ledger.md' },
-  { key: 'sales', label: 'Sales', file: 'data/sales/pipeline.md' },
-  { key: 'marketing', label: 'Marketing', file: 'data/marketing/campaigns.md' },
-  { key: 'operations', label: 'Operations', file: 'data/operations/tasks.md' },
-  { key: 'hr', label: 'HR & Admin', file: 'data/hr/roster.md' },
-];
 
 const PLACEHOLDER = /^_\(.*\)_$/;
 
@@ -121,16 +114,67 @@ function serveStatic(req, res) {
   });
 }
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/api/data') {
-    const body = JSON.stringify({ departments: loadDepartments(), generatedAt: new Date().toISOString() });
-    res.writeHead(200, { 'Content-Type': MIME['.json'] });
-    res.end(body);
+function sendJson(res, status, payload) {
+  res.writeHead(status, { 'Content-Type': MIME['.json'] });
+  res.end(JSON.stringify(payload));
+}
+
+function readJsonBody(req) {
+  return new Promise((resolve, reject) => {
+    let raw = '';
+    req.on('data', (chunk) => { raw += chunk; });
+    req.on('end', () => {
+      if (!raw) return resolve({});
+      try {
+        resolve(JSON.parse(raw));
+      } catch (err) {
+        reject(err);
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
+const server = http.createServer(async (req, res) => {
+  ensureLocalData();
+
+  if (req.url === '/api/data' && req.method === 'GET') {
+    sendJson(res, 200, { departments: loadDepartments(), generatedAt: new Date().toISOString() });
     return;
   }
+
+  if (req.url === '/api/snapshots' && req.method === 'GET') {
+    sendJson(res, 200, { snapshots: snapshots.list() });
+    return;
+  }
+
+  if (req.url === '/api/snapshots' && req.method === 'POST') {
+    try {
+      const { label } = await readJsonBody(req);
+      const meta = snapshots.save(label);
+      sendJson(res, 200, { saved: meta });
+    } catch (err) {
+      sendJson(res, 400, { error: err.message });
+    }
+    return;
+  }
+
+  if (req.url === '/api/snapshots/restore' && req.method === 'POST') {
+    try {
+      const { id } = await readJsonBody(req);
+      const restoredId = snapshots.restore(id);
+      sendJson(res, 200, { restored: restoredId });
+    } catch (err) {
+      sendJson(res, 400, { error: err.message });
+    }
+    return;
+  }
+
   serveStatic(req, res);
 });
 
+ensureLocalData();
 server.listen(PORT, () => {
   console.log(`pm-bot dashboard running at http://localhost:${PORT}`);
+  console.log('Data is read from and written to your local disk only — nothing here is ever committed to git.');
 });

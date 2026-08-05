@@ -16,6 +16,21 @@
       <button id="refresh" class="refresh-btn" type="button">Refresh</button>
     </header>
 
+    <details class="snapshot-panel">
+      <summary>Local snapshots <span id="snapshot-summary" class="snapshot-summary-text"></span></summary>
+      <div class="snapshot-body">
+        <p class="snapshot-note">
+          Snapshots copy the current <code>data/</code> files into <code>data/snapshots/</code> on this machine.
+          Nothing here is ever committed to git.
+        </p>
+        <form id="snapshot-form" class="snapshot-form">
+          <input id="snapshot-label" type="text" placeholder="optional label, e.g. end-of-week" maxlength="40" />
+          <button type="submit">Save snapshot</button>
+        </form>
+        <ul id="snapshot-list" class="snapshot-list"></ul>
+      </div>
+    </details>
+
     <section id="stat-tiles" class="stat-row" aria-label="Key numbers"></section>
 
     <main id="departments" class="departments"></main>
