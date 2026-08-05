@@ -1,5 +1,8 @@
 # Finance Ledger
 
+_Local-only file — this data never leaves your machine and is never committed to git. See README → "Local-only data & snapshots."_
+
+
 Owned by: `finance-manager` agent. Log every transaction here. Keep a running balance.
 
 **Starting balance:** $0.00 _(update this once you know your actual starting cash position)_

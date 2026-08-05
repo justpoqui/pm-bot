@@ -1,5 +1,8 @@
 # HR & Admin
 
+_Local-only file — this data never leaves your machine and is never committed to git. See README → "Local-only data & snapshots."_
+
+
 Owned by: `hr-admin` agent.
 
 ## Team (employees / contractors)

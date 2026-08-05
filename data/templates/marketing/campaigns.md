@@ -1,5 +1,8 @@
 # Marketing Campaigns
 
+_Local-only file — this data never leaves your machine and is never committed to git. See README → "Local-only data & snapshots."_
+
+
 Owned by: `marketing-director` agent.
 
 ## Active campaigns

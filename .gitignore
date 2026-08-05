@@ -1,0 +1,12 @@
+# Real business data is local-only and must never be committed.
+# The schema/starting point lives in data/templates/ (tracked in git);
+# everything else under data/ is bootstrapped from those templates on
+# first run and then stays on this machine only.
+/data/finance/
+/data/sales/
+/data/marketing/
+/data/operations/
+/data/hr/
+/data/snapshots/
+
+node_modules/
