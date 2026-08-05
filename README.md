@@ -23,6 +23,16 @@ This repo is meant to be opened in Claude Code (CLI or web). Once it's your work
 - **Know exactly what you need?** Go straight to the specialist — e.g. ask `sales-manager` to log a new lead, or `finance-manager` whether you can afford a purchase.
 - Each agent reads its `data/` file before answering and updates it as things change, so the team's memory persists across sessions — the `data/` folder is the actual state of your business, not just notes.
 
+## Dashboard GUI
+
+A read-only web dashboard lives in `gui/` — it reads the `data/` markdown files directly and renders them as stat tiles and tables, so you can see the business state at a glance without opening each file.
+
+```
+node gui/server.js
+```
+
+Then open http://localhost:3000. No dependencies to install (Node's built-in `http` module only). Refresh the page (or click "Refresh") to pick up changes an agent just made to `data/`.
+
 ## Getting started
 
 The `data/` files start empty (all placeholder rows). To get real value fast:

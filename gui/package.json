@@ -1,0 +1,10 @@
+{
+  "name": "pm-bot-gui",
+  "version": "1.0.0",
+  "description": "Read-only dashboard for the pm-bot data/ files",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

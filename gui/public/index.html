@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>pm-bot — Business Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="viz-root">
+    <header class="page-header">
+      <div>
+        <h1>Business Dashboard</h1>
+        <p class="subtitle" id="generated-at">Loading…</p>
+      </div>
+      <button id="refresh" class="refresh-btn" type="button">Refresh</button>
+    </header>
+
+    <section id="stat-tiles" class="stat-row" aria-label="Key numbers"></section>
+
+    <main id="departments" class="departments"></main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
